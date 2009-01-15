@@ -1,0 +1,20 @@
+<h2>Lunch Groups:</h2>
+
+<% if @groups.count > 0 %>
+  <div class="tabledata">
+    <table>
+      <tr><th>Group Name</th><th>Owner</th></tr>
+      <% @groups.each do |group| %>
+        <tr class="<%= cycle('even', 'odd') %>">
+          <td><%= group.name %></td>
+          <td><%= group.owner.login %></td>
+          <td><%= link_to "join", join_group_path(:group_id => group.id) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% else %>
+  <p>No Lunch Groups created yet</p>
+<% end %>
+<%= link_to "New Group", new_group_path %>
+

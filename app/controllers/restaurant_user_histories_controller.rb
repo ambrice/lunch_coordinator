@@ -1,0 +1,2 @@
+class RestaurantUserHistoriesController < ApplicationController
+end

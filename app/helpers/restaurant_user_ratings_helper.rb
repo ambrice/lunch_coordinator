@@ -1,0 +1,2 @@
+module RestaurantUserRatingsHelper
+end

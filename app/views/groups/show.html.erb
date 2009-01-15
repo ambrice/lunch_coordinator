@@ -1,0 +1,15 @@
+<h3><%=h @group.name -%></h3>
+
+<div class="tabledata">
+  <table>
+    <tr>
+      <th>Users</th>
+    </tr>
+    <% @users.each do |user| %>
+      <tr class="<%= cycle('even', 'odd') -%>">
+        <td><%=h user.login -%></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+

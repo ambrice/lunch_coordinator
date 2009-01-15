@@ -1,0 +1,17 @@
+<h3>Create a New Group:</h3>
+<% form_for @group do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name, 'Group Name' %><br/>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :password %><br/>
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation, 'Confirm Password' %><br/>
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <%= f.submit "Create" %>
+<% end %>

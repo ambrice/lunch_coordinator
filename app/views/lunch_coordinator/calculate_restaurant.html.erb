@@ -1,0 +1,54 @@
+<form action="restaurant_picked" method="post">
+  Suggested Restaurant:
+  <select name="selected_restaurant_id">
+    <% for restaurant in @restaurants do -%>
+      <% if restaurant.name == @calculated_restaurant -%>
+        <option value="<%=h restaurant.id -%>" selected="selected"><%=h "%s (%0.2f)" % [ restaurant.name, @adjusted_ratings[restaurant.name][:avg] ]-%></option>
+      <% else -%>
+        <option value="<%=h restaurant.id -%>" ><%=h "%s (%0.2f)" % [ restaurant.name, @adjusted_ratings[restaurant.name][:avg] ] -%></option>
+      <% end -%>
+    <% end -%>
+  </select>
+  <%= hidden_field_tag("user_id_list", @user_id_list.join(",")) -%>
+  <input type="submit" value="Select">
+</form>
+<br/>
+<h4>Average Ratings:</h4>
+<table border="1">
+  <tr>
+    <th>Restaurant</th>
+    <th>User Rating</th>
+    <th>Selections</th>
+    <th>Adj Rating</th>
+  </tr>
+  <% for restaurant in @restaurants do -%>
+    <tr>
+      <td><%=h restaurant.name -%></td>
+      <td><%=h "%0.2f" % @restaurant_ratings[restaurant.name][:avg] -%></td>
+      <td><%=h "%0.2f" % @restaurant_visited[restaurant.name][:avg] -%></td>
+      <td><%=h "%0.2f" % @adjusted_ratings[restaurant.name][:avg] -%></td>
+    </tr>
+  <% end -%>
+</table>
+<br/>
+<h4>User Ratings:</h4>
+<table border="1">
+  <tr>
+    <th>Restaurant</th>
+    <th>User</th>
+    <th>Rating</th>
+    <th>Selections</th>
+    <th>Adj Rating</th>
+  </tr>
+  <% for restaurant in @restaurants do -%>
+    <% for user in @users do -%>
+      <tr>
+        <td><%=h restaurant.name -%></td>
+        <td><%=h user.login -%></td>
+        <td><%=h @restaurant_ratings[restaurant.name][user.login] -%></td>
+        <td><%=h @restaurant_visited[restaurant.name][user.login] -%></td>
+        <td><%=h @adjusted_ratings[restaurant.name][user.login] -%></td>
+      </tr>
+    <% end -%>
+  <% end -%>
+</table>

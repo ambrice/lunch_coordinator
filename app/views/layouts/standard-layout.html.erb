@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Lunch Coordinator</title>
+    <%= stylesheet_link_tag "lunch" -%>
+  </head>
+  <body id="main">
+    <div id="header">Lunch Coordinator</div>
+    <div id="navigation">
+      <ul id="navmenu">
+        <li><%= link_to "Go to Lunch!", select_users_lunch_coordinator_path -%></li>
+        <% if logged_in? && current_user.group %>
+          <li><%= link_to "My Group", group_path(current_user && current_user.group) -%></li>
+        <% else %>
+          <li><%= link_to "My Group", groups_path -%></li>
+        <% end %>
+        <li><%= link_to "My Restaurants", restaurants_path -%></li>
+        <li><%= link_to "My Ratings", restaurant_user_ratings_path -%></li>
+        <% if logged_in? -%>
+          <li><%= link_to "Logout", logout_path -%></li>
+        <% else -%>
+          <li><%= link_to "Login", login_path -%></li>
+          <li><%= link_to "Signup", signup_path -%></li>
+        <% end -%>
+        <li><%= link_to "Home", root_path -%></li>
+      </ul>
+    </div>
+    <% if flash[:notice] %>
+      <div id="flash_notice">
+        <%= flash[:notice] -%>
+      </div>
+    <% end %>
+    <% if flash[:error] %>
+      <div id="flash_error">
+        <%= flash[:error] -%>
+      </div>
+    <% end %>
+    <div id="content">
+      <%= yield -%>
+    </div>
+    <div id="footer">Copyright 2009 Nut Monkey Enterprises</div>
+  </body>
+</html>

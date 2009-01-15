@@ -1,0 +1,20 @@
+<h3>Ratings:</h3>
+<form action="save_ratings" method="post">
+  <table>
+    <tr>
+      <th>Restaurant</th>
+      <% for rating_option in @valid_ratings -%>
+        <th><%=h rating_option.to_s -%></th>
+      <% end -%>
+    </tr>
+    <% for @user_rating in @ratings -%>
+      <tr>
+        <td><%=h @user_rating.restaurant.name -%>: </td>
+        <% for rating_option in @valid_ratings -%>
+          <td><%= radio_button('user_rating[]', :rating, rating_option) -%></td>
+        <% end -%>
+      </tr>
+    <% end -%>
+  </table>
+  <input type="submit" value="Save">
+</form>
