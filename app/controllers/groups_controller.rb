@@ -25,17 +25,26 @@ class GroupsController < ApplicationController
       current_user.group = @group
       current_user.save
       flash[:notice] = 'Group Created'
+      redirect_to group_url(@group)
     else
-      flash[:notice] = 'Failed to create group'
+      render :action => :new
     end
-    redirect_to group_url(@group)
   end
 
   def join
-    group = Group.find(params[:id])
-    if group && Group.authenticate(group.name, params[:group][:pass])
-      current_user.group = group
+    @group = Group.find(params[:id])
+  end
+
+  def add_user
+    @group = Group.find(params[:id])
+    if @group && Group.authenticate(@group.name, params[:group][:password])
+      current_user.group = @group
       current_user.save
+      flash[:notice] = "You have joined group #{@group.name}"
+      redirect_to group_url(@group)
+    else
+      flash[:error] = 'Wrong password'
+      render :action => :join
     end
   end
 

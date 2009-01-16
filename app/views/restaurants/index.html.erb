@@ -1,0 +1,21 @@
+<div class="tabledata">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+    <% for restaurant in @restaurants %>
+    <tr>
+      <td><%=h restaurant.name -%></td>
+      <td><%=h restaurant.category -%></td>
+      <td><%=h restaurant.description -%></td>
+      <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+      <td><%= link_to 'Delete', restaurant_path(restaurant),
+              :method => :delete,
+              :confirm => "Are you sure you want to delete this restaurant?" %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+<%= link_to 'New Restaurant', new_restaurant_path -%> 

@@ -1,10 +1,10 @@
 <h3>Welcome to the Lunch Coordinator!</h3>
 <p>It requires some setup:</p>
 <ol>
-  <li>Create an account</li>
-  <li>Create or join a Lunch Group</li>
-  <li>Add the restaurants in your Lunch Group's area</li>
-  <li>Have everyone in your Lunch Group rate the restaurants</li>
+  <li><%= link_to 'Create an account', new_user_path -%></li>
+  <li><%= link_to 'Create or join a Lunch Group', groups_path -%></li>
+  <li><%= link_to "Add the restaurants in your Lunch Group's area", new_restaurant_path -%></li>
+  <li><%= link_to 'Have everyone in your Lunch Group rate the restaurants', restaurant_user_ratings_path -%></li>
 </ol>
 <p>Each day, inform the Lunch Coordinator which members of your group are going to lunch.  
 The Lunch Coordinator takes into account the members' ratings for each restaurant and also 

@@ -5,10 +5,10 @@
     <table>
       <tr><th>Group Name</th><th>Owner</th></tr>
       <% @groups.each do |group| %>
-        <tr class="<%= cycle('even', 'odd') %>">
-          <td><%= group.name %></td>
-          <td><%= group.owner.login %></td>
-          <td><%= link_to "join", join_group_path(:group_id => group.id) %></td>
+        <tr class="<%= cycle('even', 'odd') -%>">
+          <td><%=h group.name -%></td>
+          <td><%=h group.owner.login -%></td>
+          <td><%= link_to "join", join_group_path(group) -%></td>
         </tr>
       <% end %>
     </table>

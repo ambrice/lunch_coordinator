@@ -7,8 +7,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users
   map.resources :restaurants
-  map.resources :groups, :member => { :join => :post }
-  map.resources :restaurant_user_ratings
+  map.resources :groups, :member => { :join => :get, :add_user => :put }
+  map.resources :restaurant_user_ratings, :collection => { :update_all => :put }
 
   map.resource :session
   # TODO: create a lunch selection resource

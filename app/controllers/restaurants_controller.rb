@@ -1,8 +1,9 @@
 class RestaurantsController < ApplicationController
-  before_filter :login_required, :only => ['create', 'delete', 'edit']
+  before_filter :login_required
+  before_filter :group_required
 
   def index
-    @restaurants = Restaurant.find(:all)
+    @restaurants = current_user.group.restaurant
   end
 
   def show
@@ -15,6 +16,7 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(params[:restaurant])
+    @restaurant.group_id = current_user.group_id
     if @restaurant.save
       flash[:notice] = "Restaurant created"
       redirect_to restaurants_url
@@ -36,5 +38,14 @@ class RestaurantsController < ApplicationController
   def destroy
     Restaurant.find(params[:id]).destroy
     redirect_to restaurants_url
+  end
+
+protected
+
+  def group_required
+    unless current_user.group
+      flash[:error] = "Must join a lunch group first"
+      redirect_to groups_url
+    end
   end
 end

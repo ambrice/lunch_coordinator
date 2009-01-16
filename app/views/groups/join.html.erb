@@ -1,0 +1,9 @@
+<h3>Join <%= @group.name -%>:</h3>
+<% form_for (@group, :url => add_user_group_path(@group)) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :password %><br/>
+    <%= f.password_field :password %>
+  </p>
+  <%= f.submit "Join" %>
+<% end %>

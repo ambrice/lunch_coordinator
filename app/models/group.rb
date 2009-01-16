@@ -26,14 +26,7 @@ class Group < ActiveRecord::Base
     nil
   end
 
-  def send_new_password
-    new_pass = Group.random_string(10)
-    self.password = self.password_confirmation = new_pass
-    self.save
-    Notifications.deliver_forgot_password(self.owner.email, self.owner.login, new_pass)
-  end
-
-  protected
+protected
 
   def self.random_string(len)
     #generate a random password consisting of strings and digits

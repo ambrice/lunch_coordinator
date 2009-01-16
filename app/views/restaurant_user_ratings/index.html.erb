@@ -1,5 +1,5 @@
 <h3>Ratings:</h3>
-<form action="save_ratings" method="post">
+<% form_tag(update_all_restaurant_user_ratings_path, :method => :put) do -%>
   <table>
     <tr>
       <th>Restaurant</th>
@@ -16,5 +16,5 @@
       </tr>
     <% end -%>
   </table>
-  <input type="submit" value="Save">
-</form>
+  <%= submit_tag 'Save' -%>
+<% end %>

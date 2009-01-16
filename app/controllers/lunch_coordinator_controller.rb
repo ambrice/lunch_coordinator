@@ -106,15 +106,15 @@ class LunchCoordinatorController < ApplicationController
       end
     end
     flash[:notice] = "Enjoy your lunch"
-    redirect_to :action => 'welcome'
+    redirect_to root_url
   end
 
 protected
 
   def group_required
-    unless Group.exists?(current_user.group_id)
+    unless current_user.group
       flash[:error] = "Must join a lunch group first"
-      redirect_to :action => :welcome
+      redirect_to groups_url
     end
   end
 
