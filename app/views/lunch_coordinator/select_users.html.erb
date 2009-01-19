@@ -1,21 +1,14 @@
 <h3>Who is going to lunch today?</h3>
-<form action="calculate_restaurant" method="post">
-  <label>Type</label>
-  <select name="selected_restaurant_type">
-    <option value="Any" selected="selected">Any</option>
-    <% for @type in @types %>
-      <option value="<%=h @type -%>"><%=h @type -%></option>
-    <% end %>
-  </select>
+<% form_tag calculate_restaurant_path, :method => :put do -%>
+  <%= label_tag 'selected_restaurant_type', 'Restaurant Type'-%><br/>
+  <%= select_tag 'selected_restaurant_type', options_for_select(@types, 'Any') -%><br/>
   <br/>
-  <table>
-  <% for @user in @users %>
-    <tr>
-      <td><%= check_box 'user[]', 'going_to_lunch', {}, true, false -%></td>
-      <td><%= @user.login -%></td>
-    </tr>
+  <% for user in @users %>
+    <br/>
+    <%= check_box_tag "going_to_lunch[]", user.id, true -%>
+    <%= label_tag "going_to_lunch[]", user.login -%>
   <% end %>
-  </table>
-  <br/>
-  <input type="submit" value="Calculate Restaurant (Not coded yet)">
-</form>
+  <p>
+    <%= submit_tag 'Calculate Restaurant' -%>
+  </p>
+<% end %>

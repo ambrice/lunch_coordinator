@@ -5,6 +5,12 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
 
+  #named routes
+  map.select_users '/select_users', :controller => 'lunch_coordinator', :action => 'select_users', :conditions => { :method => :get }
+  map.calculate_restaurant '/calculate_restaurant', :controller => 'lunch_coordinator', :action => 'calculate_restaurant', :conditions => { :method => :put }
+  map.restaurant_picked '/restaurant_picked', :controller => 'lunch_coordinator', :action => 'restaurant_picked', :conditions => { :method => :put }
+  map.welcome '/welcome', :controller => 'lunch_coordinator', :action => 'welcome', :conditions => { :method => :get }
+
   map.resources :users
   map.resources :restaurants
   map.resources :groups, :member => { :join => :get, :add_user => :put }
@@ -12,7 +18,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resource :session
   # TODO: create a lunch selection resource
-  map.resource :lunch_coordinator, :only => [:show], :member => { :select_users => :get, :calculate_restaurant => :post, :restaurant_picked => :post }
+  #map.resource :lunch_coordinator, :plural => 'lunch_coordinator', :only => [:show], :member => { :select_users => :get, :calculate_restaurant => :post, :restaurant_picked => :post }
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -46,7 +52,7 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  map.root :controller => 'lunch_coordinator', :action => :show
+  map.root :welcome
 
   # See how all your routes lay out with "rake routes"
 

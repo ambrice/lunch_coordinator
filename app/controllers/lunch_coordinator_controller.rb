@@ -7,15 +7,22 @@ class LunchCoordinatorController < ApplicationController
   SELECTION_SCALE_FACTOR = 0.1
   NEW_RESTAURANT_SCALE_FACTOR = 5
   
-  def show
+  def welcome
   end
 
   def select_users
-    @users = current_user.group.users
-    restaurants = current_user.group.restaurants
+    @users = current_user.group.user
+    restaurants = current_user.group.restaurant
+
+    if restaurants.empty?
+      flash[:error] = "Must add some restaurants first"
+      redirect_to new_restaurant_url
+    end
+
     @types = Set.new
+    @types << 'Any'
     restaurants.each do |r|
-      @types << r.restaurant_type
+      @types << r.category
     end
   end
 
@@ -27,25 +34,21 @@ class LunchCoordinatorController < ApplicationController
     # new restaurant factor = average adjusted rating * number of people who have never been * NEW_RESTAURANT_SCALE_FACTOR
     # Total rating for each restaurant is average adjusted rating + new restaurant factor
 
-    @restaurants = current_user.group.restaurants
+    @restaurants = current_user.group.restaurant
     if @restaurants.empty?
       flash[:error] = "Must add some restaurants first"
       redirect_to new_restaurant_url
     end
 
-    @user_id_list = Array.new
-    params[:user].each do |id, input|
-      @user_id_list << id if input[:going_to_lunch] == 'true'
-    end
+    @users = User.find(params[:going_to_lunch])
 
     selected_type = params[:selected_restaurant_type]
 
-    if @user_id_list.empty?
+    if @users.empty?
       flash[:error] = "Must select at least one person to go to lunch"
       redirect_to :action => :select_users
     end
 
-    @users = User.find(@user_id_list)
     
     @restaurant_ratings = Hash.new { |hash, key| hash[key] = Hash.new }
     @restaurant_visited = Hash.new { |hash, key| hash[key] = Hash.new }
@@ -92,7 +95,9 @@ class LunchCoordinatorController < ApplicationController
       @adjusted_ratings[rname][:avg] = @adjusted_ratings[rname].inject(0) { |sum, n| sum + n[1] } / @adjusted_ratings[rname].length.to_f
     end
     @restaurants.sort! { |a,b| @adjusted_ratings[b.name][:avg] <=> @adjusted_ratings[a.name][:avg] }
-    @calculated_restaurant = @restaurants[0].name
+    @calculated_restaurant = @restaurants[0]
+    @restaurant_ids = @restaurants.map { |r| r.id }
+    @restaurant_options = @restaurants.map {|r| "%s (%0.2f)" % [ r.name, @adjusted_ratings[r.name][:avg] ] }.zip(@restaurant_ids)
   end
 
   def restaurant_picked
@@ -105,7 +110,7 @@ class LunchCoordinatorController < ApplicationController
         RestaurantUserHistory.new(:user_id => user_id, :restaurant_id => selected_restaurant_id, :selections_since_picked => 0).save
       end
     end
-    flash[:notice] = "Enjoy your lunch"
+    flash[:notice] = "Enjoy your lunch!"
     redirect_to root_url
   end
 

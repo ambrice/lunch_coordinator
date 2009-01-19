@@ -6,10 +6,12 @@
   <li><%= link_to "Add the restaurants in your Lunch Group's area", new_restaurant_path -%></li>
   <li><%= link_to 'Have everyone in your Lunch Group rate the restaurants', restaurant_user_ratings_path -%></li>
 </ol>
-<p>Each day, inform the Lunch Coordinator which members of your group are going to lunch.  
-The Lunch Coordinator takes into account the members' ratings for each restaurant and also 
-the number of selections since that restaurant was picked, and decides which restaurant you 
-should visit for lunch.  Restaurants that are rated higher will come up more often than 
-restaurants rated lower.  Easy and fair way to pick a restaurant!</p>
+<p>Each day, <%= link_to 'inform the Lunch Coordinator', select_users_path -%> which members 
+  of your group are going to lunch.  The Lunch Coordinator takes into account the members' 
+  ratings for each restaurant and also the number of selections since that restaurant was 
+  picked, and decides which restaurant you should visit for lunch.  Restaurants that are 
+  rated higher will come up more often than restaurants rated lower.  Easy and fair way to 
+  pick a restaurant!
+</p>
 <p>Note!  Only tested with firefox 3, may not look right in other browsers</p>
 

@@ -7,7 +7,7 @@
     <div id="header">Lunch Coordinator</div>
     <div id="navigation">
       <ul id="navmenu">
-        <li><%= link_to "Go to Lunch!", select_users_lunch_coordinator_path -%></li>
+        <li><%= link_to "Go to Lunch!", select_users_path -%></li>
         <% if logged_in? && current_user.group %>
           <li><%= link_to "My Group", group_path(current_user && current_user.group) -%></li>
         <% else %>

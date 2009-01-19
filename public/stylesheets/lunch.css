@@ -125,3 +125,6 @@
   font-style: bold;
 }
 
+.debug {
+  display: none;
+}
