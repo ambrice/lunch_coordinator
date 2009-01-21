@@ -3,10 +3,16 @@
 <ol>
   <li><%= link_to 'Create an account', new_user_path -%></li>
   <li><%= link_to 'Create or join a Lunch Group', groups_path -%></li>
-  <li><%= link_to "Add the restaurants in your Lunch Group's area", new_restaurant_path -%></li>
-  <li><%= link_to 'Have everyone in your Lunch Group rate the restaurants', restaurant_user_ratings_path -%></li>
+  <% if logged_in? && current_user.group %>
+    <li><%= link_to "Add the restaurants in your Lunch Group's area", new_group_restaurant_path(current_user.group) -%></li>
+    <li><%= link_to 'Have everyone in your Lunch Group rate the restaurants', group_restaurant_user_ratings_path(current_user.group) -%></li>
+  <% else %>
+    <li><%= link_to "Add the restaurants in your Lunch Group's area", groups_path -%></li>
+    <li><%= link_to 'Have everyone in your Lunch Group rate the restaurants', groups_path -%></li>
+  <% end %>
+
 </ol>
-<p>Each day, <%= link_to 'inform the Lunch Coordinator', select_users_path -%> which members 
+<p>Each day, inform the Lunch Coordinator which members 
   of your group are going to lunch.  The Lunch Coordinator takes into account the members' 
   ratings for each restaurant and also the number of selections since that restaurant was 
   picked, and decides which restaurant you should visit for lunch.  Restaurants that are 

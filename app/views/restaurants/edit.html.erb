@@ -1,4 +1,4 @@
-<% form_for @restaurant do |f| %>
+<% form_for [@group, @restaurant] do |f| %>
   <%= f.error_messages -%>
   <p>
     <%= f.label :name, 'Restaurant Name' -%><br/>

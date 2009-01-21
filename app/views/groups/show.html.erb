@@ -3,11 +3,13 @@
 <div class="tabledata">
   <table>
     <tr>
-      <th>Users</th>
+      <th>User</th>
+      <th>Email</th>
     </tr>
     <% @users.each do |user| %>
       <tr class="<%= cycle('even', 'odd') -%>">
         <td><%=h user.login -%></td>
+        <td><a href="mailto:<%=h user.email -%>"><%=h user.email -%></a>
       </tr>
     <% end %>
   </table>

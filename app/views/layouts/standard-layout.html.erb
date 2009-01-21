@@ -7,14 +7,17 @@
     <div id="header">Lunch Coordinator</div>
     <div id="navigation">
       <ul id="navmenu">
-        <li><%= link_to "Go to Lunch!", select_users_path -%></li>
         <% if logged_in? && current_user.group %>
-          <li><%= link_to "My Group", group_path(current_user && current_user.group) -%></li>
+          <li><%= link_to "Go to Lunch!", goto_lunch_group_path(current_user.group) -%></li>
+          <li><%= link_to "My Group", group_path(current_user.group) -%></li>
+          <li><%= link_to "My Restaurants", group_restaurants_path(current_user.group) -%></li>
+          <li><%= link_to "My Ratings", group_restaurant_user_ratings_path(current_user.group) -%></li>
         <% else %>
+          <li><%= link_to "Go to Lunch!", groups_path -%></li>
           <li><%= link_to "My Group", groups_path -%></li>
+          <li><%= link_to "My Restaurants", groups_path -%></li>
+          <li><%= link_to "My Ratings", groups_path -%></li>
         <% end %>
-        <li><%= link_to "My Restaurants", restaurants_path -%></li>
-        <li><%= link_to "My Ratings", restaurant_user_ratings_path -%></li>
         <% if logged_in? -%>
           <li><%= link_to "Logout", logout_path -%></li>
         <% else -%>

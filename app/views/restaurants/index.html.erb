@@ -10,12 +10,12 @@
       <td><%=h restaurant.name -%></td>
       <td><%=h restaurant.category -%></td>
       <td><%=h restaurant.description -%></td>
-      <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-      <td><%= link_to 'Delete', restaurant_path(restaurant),
+      <td><%= link_to 'Edit', edit_group_restaurant_path(@group, restaurant) %></td>
+      <td><%= link_to 'Delete', group_restaurant_path(@group, restaurant),
               :method => :delete,
               :confirm => "Are you sure you want to delete this restaurant?" %></td>
     </tr>
     <% end %>
   </table>
 </div>
-<%= link_to 'New Restaurant', new_restaurant_path -%> 
+<%= link_to 'New Restaurant', new_group_restaurant_path -%> 

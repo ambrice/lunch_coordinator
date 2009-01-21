@@ -4,7 +4,7 @@ class RestaurantUserRatingsController < ApplicationController
 
   def index
     @user = current_user
-    restaurants = current_user.group.restaurant
+    restaurants = @group.restaurant
     # Make sure an entry exists for this user for each restaurant
     restaurants.each do |restaurant|
       unless (RestaurantUserRating.find_by_user_id_and_restaurant_id(@user.id, restaurant.id))
@@ -21,15 +21,16 @@ class RestaurantUserRatingsController < ApplicationController
       RestaurantUserRating.find(id).update_attributes(attributes)
     end
     flash[:notice] = "Ratings have been saved"
-    redirect_to restaurant_user_ratings_url
+    redirect_to group_restaurant_user_ratings_url(@group)
   end
 
 protected
 
   def group_required
-    unless current_user.group
-      flash[:error] = "Must join a group first"
-      redirect_to groups_url
+    @group = Group.find(params[:group_id])
+    unless @group.id == current_user.group.id
+      flash[:error] = "Not a member of that group"
+      redirect_to root_url
     end
   end
 end

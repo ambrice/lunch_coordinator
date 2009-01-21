@@ -6,15 +6,16 @@ ActionController::Routing::Routes.draw do |map|
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
 
   #named routes
-  map.select_users '/select_users', :controller => 'lunch_coordinator', :action => 'select_users', :conditions => { :method => :get }
+  #map.select_users '/select_users', :controller => 'lunch_coordinator', :action => 'select_users', :conditions => { :method => :get }
   map.calculate_restaurant '/calculate_restaurant', :controller => 'lunch_coordinator', :action => 'calculate_restaurant', :conditions => { :method => :put }
   map.restaurant_picked '/restaurant_picked', :controller => 'lunch_coordinator', :action => 'restaurant_picked', :conditions => { :method => :put }
   map.welcome '/welcome', :controller => 'lunch_coordinator', :action => 'welcome', :conditions => { :method => :get }
 
   map.resources :users
-  map.resources :restaurants
-  map.resources :groups, :member => { :join => :get, :add_user => :put }
-  map.resources :restaurant_user_ratings, :collection => { :update_all => :put }
+  map.resources :groups, :member => { :join => :get, :add_user => :put, :goto_lunch => :get } do |groups|
+    groups.resources :restaurants
+    groups.resources :restaurant_user_ratings, :collection => { :update_all => :put }
+  end
 
   map.resource :session
   # TODO: create a lunch selection resource

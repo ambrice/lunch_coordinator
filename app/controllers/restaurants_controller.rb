@@ -3,7 +3,7 @@ class RestaurantsController < ApplicationController
   before_filter :group_required
 
   def index
-    @restaurants = current_user.group.restaurant
+    @restaurants = @group.restaurant
   end
 
   def show
@@ -16,10 +16,10 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(params[:restaurant])
-    @restaurant.group_id = current_user.group_id
+    @restaurant.group_id = @group.id
     if @restaurant.save
       flash[:notice] = "Restaurant created"
-      redirect_to restaurants_url
+      redirect_to group_restaurants_url(@group)
     else
       render :action => :new
     end
@@ -32,20 +32,21 @@ class RestaurantsController < ApplicationController
   def update
     @restaurant = Restaurant.find(params[:id])
     @restaurant.update_attributes(params[:restaurant])
-    redirect_to restaurants_url
+    redirect_to group_restaurants_url(@group)
   end
 
   def destroy
     Restaurant.find(params[:id]).destroy
-    redirect_to restaurants_url
+    redirect_to group_restaurants_url(@group)
   end
 
 protected
 
   def group_required
-    unless current_user.group
-      flash[:error] = "Must join a lunch group first"
-      redirect_to groups_url
+    @group = Group.find(params[:group_id])
+    unless @group.id == current_user.group.id
+      flash[:error] = "Not a member of that group"
+      redirect_to root_url
     end
   end
 end

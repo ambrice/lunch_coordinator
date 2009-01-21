@@ -1,29 +1,13 @@
 class LunchCoordinatorController < ApplicationController
   require 'set'
 
-  before_filter :login_required, :only=>['select_users', 'calculate_restaurant', 'restaurant_picked']
-  before_filter :group_required, :only=>['select_users', 'calculate_restaurant', 'restaurant_picked']
+  before_filter :login_required, :only=>['calculate_restaurant', 'restaurant_picked']
+  before_filter :group_required, :only=>['calculate_restaurant', 'restaurant_picked']
 
   SELECTION_SCALE_FACTOR = 0.1
   NEW_RESTAURANT_SCALE_FACTOR = 5
   
   def welcome
-  end
-
-  def select_users
-    @users = current_user.group.user
-    restaurants = current_user.group.restaurant
-
-    if restaurants.empty?
-      flash[:error] = "Must add some restaurants first"
-      redirect_to new_restaurant_url
-    end
-
-    @types = Set.new
-    @types << 'Any'
-    restaurants.each do |r|
-      @types << r.category
-    end
   end
 
   def calculate_restaurant

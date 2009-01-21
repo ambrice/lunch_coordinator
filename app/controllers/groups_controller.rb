@@ -48,4 +48,26 @@ class GroupsController < ApplicationController
     end
   end
 
+  def goto_lunch
+    @group = Group.find(params[:id])
+    unless (@group.id == current_user.group.id)
+      flash[:error] = "Wrong group selected"
+      redirect_to root_url
+    end
+
+    @users = @group.user
+    restaurants = @group.restaurant
+
+    if restaurants.empty?
+      flash[:error] = "Must add some restaurants first"
+      redirect_to new_group_restaurant_url(@group)
+    end
+
+    @types = Set.new
+    @types << 'Any'
+    restaurants.each do |r|
+      @types << r.category
+    end
+  end
+
 end
