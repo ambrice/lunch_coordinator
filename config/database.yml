@@ -43,6 +43,6 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: lunchcoordinator_production
-  username: lunchcoordinator
+  database: ambrice_lunchcoordinator
+  username: ambrice
   password:
