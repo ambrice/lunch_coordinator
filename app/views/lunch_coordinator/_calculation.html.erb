@@ -1,0 +1,9 @@
+<% form_tag restaurant_picked_path, :method => :put do %>
+  Suggested Restaurant:
+  <%= select_tag 'selected_restaurant_id', options_for_select(@restaurant_options, @calculated_restaurant.id )-%>
+  <%= hidden_field_tag("user_id_list", @users.map { |u| u.id }.join(",")) -%>
+  <%= submit_tag "Select" -%>
+<% end %>
+<p>
+  The Lunch Coordinator suggests the the restaurant selected above.  You can select another restaurant instead, listed in order of preference
+</p>

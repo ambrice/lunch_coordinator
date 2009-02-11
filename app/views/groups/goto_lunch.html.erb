@@ -1,5 +1,5 @@
 <h3>Who is going to lunch today?</h3>
-<% form_tag calculate_restaurant_path, :method => :put do -%>
+<% form_remote_tag :url => calculate_restaurant_path, :method => :put, :html => { :method => :put } do -%>
   <%= label_tag 'selected_restaurant_type', 'Restaurant Type'-%><br/>
   <%= select_tag 'selected_restaurant_type', options_for_select(@types, 'Any') -%><br/>
   <br/>
@@ -12,3 +12,7 @@
     <%= submit_tag 'Calculate Restaurant' -%>
   </p>
 <% end %>
+<br/>
+<div id="calculation">
+</div>
+
