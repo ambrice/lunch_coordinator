@@ -1,18 +1,20 @@
 <h3>Who is going to lunch today?</h3>
 <% form_remote_tag :url => calculate_restaurant_path, :method => :put, :html => { :method => :put } do -%>
-  <%= label_tag 'selected_restaurant_type', 'Restaurant Type'-%><br/>
-  <%= select_tag 'selected_restaurant_type', options_for_select(@types, 'Any') -%><br/>
-  <br/>
-  <% for user in @users %>
-    <br/>
-    <%= check_box_tag "going_to_lunch[]", user.id, true -%>
-    <%= label_tag "going_to_lunch[]", user.login -%>
-  <% end %>
   <p>
-    <%= submit_tag 'Calculate Restaurant' -%>
+    <%= label_tag 'selected_restaurant_type', 'Restaurant Type'-%>
+    <%= select_tag 'selected_restaurant_type', options_for_select(@types, 'Any') -%>
+  </p>
+  <p>
+    <% for user in @users %>
+      <%= check_box_tag "going_to_lunch[]", user.id, true -%>
+      <%= label_tag "going_to_lunch[]", user.login -%>
+      <br />
+    <% end %>
+  </p>
+  <p>
+    <%= submit_tag 'Best Restaurant' -%>
   </p>
 <% end %>
-<br/>
 <div id="calculation">
 </div>
 

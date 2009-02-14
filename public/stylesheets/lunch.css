@@ -285,3 +285,9 @@ A:hover {
   font-style: bold;
 }
 
+#selected {
+  font-family: verdana, arial, sans-serif;
+  font-size: 14px;
+  color: #FF6600;
+  line-height: 18px;
+}

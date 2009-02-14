@@ -1,9 +1,16 @@
-<% form_tag restaurant_picked_path, :method => :put do %>
-  Suggested Restaurant:
-  <%= select_tag 'selected_restaurant_id', options_for_select(@restaurant_options, @calculated_restaurant.id )-%>
-  <%= hidden_field_tag("user_id_list", @users.map { |u| u.id }.join(",")) -%>
-  <%= submit_tag "Select" -%>
-<% end %>
+<h3>Suggested Restaurant:</h3>
 <p>
-  The Lunch Coordinator suggests the the restaurant selected above.  You can select another restaurant instead, listed in order of preference
+  The Lunch Coordinator suggests <span id="selected"><%= @calculated_restaurant.name -%></span> for lunch.
+</p>
+
+<% form_tag restaurant_picked_path, :method => :put do %>
+  <p>
+    You can select another restaurant instead.  Either way, let the Lunch Coordinator know where you're going!
+  </p>
+  <p>
+    <%= select_tag 'selected_restaurant_id', options_for_select(@restaurant_options, @calculated_restaurant.id )-%>
+    <%= hidden_field_tag("user_id_list", @users.map { |u| u.id }.join(",")) -%>
+    <%= submit_tag "Select" -%>
+  </p>
+<% end %>
 </p>
