@@ -1,0 +1,33 @@
+<h3>We're Ready For Lunch!</h3>
+<p>
+  <ul class="arrow_list">
+    <li><%= link_to "Where Should We Go?", goto_lunch_group_path(current_user.group) -%></li>
+  </ul>
+</p>
+
+<h3>Account</h3>
+<p>
+  <ul class="arrow_list">
+    <li>Logged in as <%= link_to current_user.login, user_path(current_user) -%></li>
+    <li><%= link_to "Logout", logout_path -%></li>
+  </ul>
+</p>
+
+<h3>Group</h3>
+<p>
+  <ul class="arrow_list">
+    <li><%= link_to "Show My Group", group_path(current_user.group) -%></li>
+    <li><%= link_to "Show Other Groups", groups_path -%></li>
+    <li><%= link_to "Send Group Invitation", group_path(current_user.group) -%></li>
+  </ul>
+</p>
+
+<h3>Restaurants</h3>
+<p>
+  <ul class="arrow_list">
+    <li><%= link_to "Show Restaurants", group_restaurants_path(current_user.group) -%></li>
+    <li><%= link_to "Add Restaurant", new_group_restaurant_path(current_user.group) -%></li>
+    <li><%= link_to "Rate Restaurants", group_restaurant_user_ratings_path(current_user.group) -%></li>
+  </ul>
+</p>
+

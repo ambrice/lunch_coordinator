@@ -1,48 +1,78 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--
+Copyright: Aaron Brice 2009
+
+Layout, CSS, and images based on Darren Hester's "Fruitopia" template:
+
+Copyright: Darren Hester 2006, http://www.designsbydarren.com
+License: Released Under the "Creative Commons License", 
+http://creativecommons.org/licenses/by-nc/2.5/
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="description" content="Helps decide where to go for lunch" />
+    <meta name="keywords" content="Lunch, Food, Restaurant, Coordination" />
+
     <title>Lunch Coordinator</title>
     <%= javascript_include_tag :defaults %>
     <%= stylesheet_link_tag "lunch" %>
   </head>
   <body id="main">
-    <div id="header">
-      <%= link_to (image_tag("lunch-header.png", :border => 0), root_url) %>
-    </div>
-    <div id="navigation">
-      <ul id="navmenu">
-        <% if logged_in? && current_user.group %>
-          <li><%= link_to "Go to Lunch!", goto_lunch_group_path(current_user.group) -%></li>
-          <li><%= link_to "My Group", group_path(current_user.group) -%></li>
-          <li><%= link_to "My Restaurants", group_restaurants_path(current_user.group) -%></li>
-          <li><%= link_to "My Ratings", group_restaurant_user_ratings_path(current_user.group) -%></li>
-        <% else %>
-          <li><%= link_to "Go to Lunch!", groups_path -%></li>
-          <li><%= link_to "My Group", groups_path -%></li>
-          <li><%= link_to "My Restaurants", groups_path -%></li>
-          <li><%= link_to "My Ratings", groups_path -%></li>
-        <% end %>
-        <% if logged_in? -%>
-          <li><%= link_to "Logout", logout_path -%></li>
-        <% else -%>
-          <li><%= link_to "Login", login_path -%></li>
-          <li><%= link_to "Signup", signup_path -%></li>
-        <% end -%>
-        <li><%= link_to "Home", root_path -%></li>
-      </ul>
-    </div>
-    <% if flash[:notice] %>
-      <div id="flash_notice">
-        <%= flash[:notice] -%>
+
+    <div id="page_wrapper">
+      <div id="page_header">
+        <h1>Lunch Coordinator</h1>
+        <h2>A fair system for deciding where to go for lunch.</h2>
       </div>
-    <% end %>
-    <% if flash[:error] %>
-      <div id="flash_error">
-        <%= flash[:error] -%>
+      <div id="menu_bar">
+        <ul>
+          <% if logged_in? && current_user.group %>
+            <li><%= link_to "Go to Lunch!", goto_lunch_group_path(current_user.group) -%></li>
+            <li><%= link_to "My Group", group_path(current_user.group) -%></li>
+            <li><%= link_to "My Restaurants", group_restaurants_path(current_user.group) -%></li>
+            <li><%= link_to "My Ratings", group_restaurant_user_ratings_path(current_user.group) -%></li>
+          <% else %>
+            <li><%= link_to "Go to Lunch!", groups_path -%></li>
+            <li><%= link_to "My Group", groups_path -%></li>
+            <li><%= link_to "My Restaurants", groups_path -%></li>
+            <li><%= link_to "My Ratings", groups_path -%></li>
+          <% end %>
+          <li><%= link_to "Home", root_path -%></li>
+        </ul>
       </div>
-    <% end %>
-    <div id="content">
-      <%= yield -%>
+
+      <% if flash[:notice] %>
+        <div id="flash_notice">
+          <%= flash[:notice] -%>
+        </div>
+      <% end %>
+      <% if flash[:error] %>
+        <div id="flash_error">
+          <%= flash[:error] -%>
+        </div>
+      <% end %>
+      <div id="content_wrapper">
+        <div id="left_side">
+          <%= yield %>
+        </div>
+        <div id="right_side">
+          <% if logged_in? && current_user.group %>
+            <%= render :partial => 'layouts/grouped_right_side' %>
+          <% elsif logged_in? %>
+            <%= render :partial => 'layouts/logged_in_right_side' %>
+          <% else %>
+            <%= render :partial => 'layouts/logged_out_right_side' %>
+          <% end %>
+        </div>
+        <div id="spacer"></div>
+      </div>
+      <div id="page_footer">
+        <p>&copy; 2009 Aaron Brice; Some elements &copy; Darren Hester DesignsByDarren.com</p>
+      </div>
     </div>
-    <div id="footer">Copyright 2009 Nut Monkey Enterprises</div>
   </body>
 </html>

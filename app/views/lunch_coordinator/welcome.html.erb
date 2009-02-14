@@ -1,6 +1,10 @@
 <h3>Welcome to the Lunch Coordinator!</h3>
+
+<img src="images/strawberries.jpg" class="float_right" alt="Strawberries" />
+
 <p>It requires some setup:</p>
-<ol>
+
+<ul class="arrow_list">
   <li><%= link_to 'Create an account', new_user_path -%></li>
   <li><%= link_to 'Create or join a Lunch Group', groups_path -%></li>
   <% if logged_in? && current_user.group %>
@@ -10,14 +14,18 @@
     <li><%= link_to "Add the restaurants in your Lunch Group's area", groups_path -%></li>
     <li><%= link_to 'Have everyone in your Lunch Group rate the restaurants', groups_path -%></li>
   <% end %>
+</ul>
 
-</ol>
-<p>Each day, inform the Lunch Coordinator which members 
-  of your group are going to lunch.  The Lunch Coordinator takes into account the members' 
-  ratings for each restaurant and also the number of selections since that restaurant was 
-  picked, and decides which restaurant you should visit for lunch.  Restaurants that are 
-  rated higher will come up more often than restaurants rated lower.  Easy and fair way to 
-  pick a restaurant!
+<p>
+Each day, inform the Lunch Coordinator which members of your group are going to lunch.  The Lunch Coordinator takes into account the members' ratings for each restaurant and also the number of selections since that restaurant was picked, and decides which restaurant you should visit for lunch.  Restaurants that are rated higher will come up more often than restaurants rated lower.  Easy and fair way to pick a restaurant!
 </p>
+
+<div id="feature_box">
+  <h4>Contact:</h4>
+  <p>
+    Questions?  Comments?  Contact me at aaron.brice@gmail.com
+  </p>
+</div>
+
 <p>Note!  Only tested with firefox 3, may not look right in other browsers</p>
 

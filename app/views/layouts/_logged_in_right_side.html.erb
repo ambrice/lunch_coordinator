@@ -1,0 +1,19 @@
+<h3>Account</h3>
+<p>
+  <ul class="arrow_list">
+    <li>Logged in as <%= link_to current_user.login, user_path(current_user) -%></li>
+    <li><%= link_to "Logout", logout_path -%></li>
+  </ul>
+</p>
+
+<h3>Group</h3>
+<p>
+  <ul class="arrow_list">
+    <li><%= link_to "Join a Group", groups_path -%></li>
+  </ul>
+</p>
+
+<h3>Restaurants</h3>
+<p>
+  After you join a group, you can add restaurants in the group's area.  Then, rate your group's restaurants.
+</p>

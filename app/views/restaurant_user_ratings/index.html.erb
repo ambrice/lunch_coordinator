@@ -1,20 +1,22 @@
 <h3>Ratings:</h3>
 <% form_tag(update_all_group_restaurant_user_ratings_path(@group), :method => :put) do -%>
-  <table>
-    <tr>
-      <th>Restaurant</th>
-      <% for rating_option in @valid_ratings -%>
-        <th><%=h rating_option.to_s -%></th>
-      <% end -%>
-    </tr>
-    <% for @user_rating in @ratings -%>
+  <div class="tabledata">
+    <table>
       <tr>
-        <td><%=h @user_rating.restaurant.name -%>: </td>
+        <th>Restaurant</th>
         <% for rating_option in @valid_ratings -%>
-          <td><%= radio_button('user_rating[]', :rating, rating_option) -%></td>
+          <th><%=h rating_option.to_s -%></th>
         <% end -%>
       </tr>
-    <% end -%>
-  </table>
+      <% for @user_rating in @ratings -%>
+        <tr>
+          <td><%=h @user_rating.restaurant.name -%>: </td>
+          <% for rating_option in @valid_ratings -%>
+            <td><%= radio_button('user_rating[]', :rating, rating_option) -%></td>
+          <% end -%>
+        </tr>
+      <% end -%>
+    </table>
+  </div>
   <%= submit_tag 'Save' -%>
 <% end %>
