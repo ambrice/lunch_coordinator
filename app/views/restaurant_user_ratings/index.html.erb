@@ -9,7 +9,7 @@
         <% end -%>
       </tr>
       <% for @user_rating in @ratings -%>
-        <tr>
+        <tr class="<%= cycle('even', 'odd') -%>">
           <td><%=h @user_rating.restaurant.name -%>: </td>
           <% for rating_option in @valid_ratings -%>
             <td><%= radio_button('user_rating[]', :rating, rating_option) -%></td>

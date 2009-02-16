@@ -3,21 +3,21 @@ class UserMailer < ActionMailer::Base
     setup_email(user)
     @subject    += 'Please activate your new account'
   
-    @body[:url]  = "http://localhost:3000/activate/#{user.activation_code}"
+    @body[:url]  = activate_url(user.activation_code)
   
   end
   
   def activation(user)
     setup_email(user)
     @subject    += 'Your account has been activated!'
-    @body[:url]  = "http://localhost:3000/"
+    @body[:url]  = root_url
   end
   
   protected
     def setup_email(user)
       @recipients  = "#{user.email}"
       @from        = "do-not-reply@lunchcoordinator.com"
-      @subject     = "Lunch Coordinator "
+      @subject     = "Lunch Coordinator -- "
       @sent_on     = Time.now
       @body[:user] = user
     end

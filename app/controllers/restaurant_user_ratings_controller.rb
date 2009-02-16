@@ -23,14 +23,4 @@ class RestaurantUserRatingsController < ApplicationController
     flash[:notice] = "Ratings have been saved"
     redirect_to group_restaurant_user_ratings_url(@group)
   end
-
-protected
-
-  def group_required
-    @group = Group.find(params[:group_id])
-    unless @group.id == current_user.group.id
-      flash[:error] = "Not a member of that group"
-      redirect_to root_url
-    end
-  end
 end

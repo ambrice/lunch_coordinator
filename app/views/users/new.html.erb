@@ -1,7 +1,8 @@
-<h1>Sign up as a new user</h1>
+<h3>Sign up as a new user</h3>
 <% @user.password = @user.password_confirmation = nil %>
-
+<p>
 <%= error_messages_for :user %>
+</p>
 <% form_for :user, :url => users_path do |f| -%>
 <p><%= label_tag 'login' %><br/>
 <%= f.text_field :login %></p>
@@ -17,3 +18,4 @@
 
 <p><%= submit_tag 'Sign up' %></p>
 <% end -%>
+

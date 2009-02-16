@@ -1,0 +1,21 @@
+<h3>Current Invitations</h3>
+<div class="tabledata">
+  <% if @invitations.length > 0 %>
+    <table>
+      <tr>
+        <th>Email</th>
+      </tr>
+      <% for invitation in @invitations %>
+        <tr class="<%= cycle('even', 'odd') -%>">
+          <td><%=h invitation.email -%></td>
+          <td><%= link_to 'delete', group_invitation_path(@group, invitation), :method => :delete %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <p>Currently there are no invitations for this group</p>
+  <% end %>
+</div>
+<p>
+<%= link_to 'New Invitation', new_group_invitation_path(@group) -%> 
+</p>

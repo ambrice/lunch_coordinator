@@ -1,0 +1,13 @@
+<h3>Send Invitation</h3>
+<p>
+  Send invitation to <%= @group.name -%>.
+</p>
+<% form_for [@group, @invitation] do |f| %>
+  <%= f.error_messages -%>
+  <p>
+    <%= f.label :email, 'Email Address' -%><br/>
+    <%= f.text_field :email -%>
+  </p>
+  <%= f.submit "Send" -%>
+<% end %>
+

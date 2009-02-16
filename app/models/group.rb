@@ -3,6 +3,7 @@ require 'digest/sha1'
 class Group < ActiveRecord::Base
   has_many :user
   has_many :restaurant
+  has_many :invitations
   belongs_to :owner, :class_name => 'User'
 
   validates_presence_of :name, :owner_id, :password, :password_confirmation, :salt, :on => :create

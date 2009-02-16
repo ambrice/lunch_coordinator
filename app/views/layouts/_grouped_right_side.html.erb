@@ -18,7 +18,7 @@
   <ul class="arrow_list">
     <li><%= link_to "Show My Group", group_path(current_user.group) -%></li>
     <li><%= link_to "Show Other Groups", groups_path -%></li>
-    <li><%= link_to "Send Group Invitation", group_path(current_user.group) -%></li>
+    <li><%= link_to "Send Group Invitation", new_group_invitation_path(current_user.group) -%></li>
   </ul>
 </p>
 

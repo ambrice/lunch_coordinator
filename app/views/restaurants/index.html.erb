@@ -7,7 +7,7 @@
       <th>Description</th>
     </tr>
     <% for restaurant in @restaurants %>
-    <tr>
+    <tr class="<%= cycle('even', 'odd') -%>">
       <td><%=h restaurant.name -%></td>
       <td><%=h restaurant.category -%></td>
       <td><%=h restaurant.description -%></td>
@@ -20,5 +20,5 @@
   </table>
 </div>
 <p>
-<%= link_to 'New Restaurant', new_group_restaurant_path -%> 
+<%= link_to 'New Restaurant', new_group_restaurant_path(@group) -%> 
 </p>

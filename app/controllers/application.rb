@@ -15,4 +15,14 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   filter_parameter_logging :password
+
+protected
+
+  def group_required
+    @group = Group.find(params[:group_id])
+    unless @group.id == current_user.group.id
+      flash[:error] = "Not a member of that group"
+      redirect_to root_url
+    end
+  end
 end

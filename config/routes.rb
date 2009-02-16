@@ -15,10 +15,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :groups, :member => { :join => :get, :add_user => :put, :goto_lunch => :get } do |groups|
     groups.resources :restaurants
     groups.resources :restaurant_user_ratings, :collection => { :update_all => :put }
+    groups.resources :invitations
   end
 
   map.resource :session
-  # TODO: create a lunch selection resource
   #map.resource :lunch_coordinator, :plural => 'lunch_coordinator', :only => [:show], :member => { :select_users => :get, :calculate_restaurant => :post, :restaurant_picked => :post }
 
   # The priority is based upon order of creation: first created -> highest priority.

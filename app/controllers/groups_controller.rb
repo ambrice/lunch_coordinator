@@ -33,6 +33,19 @@ class GroupsController < ApplicationController
 
   def join
     @group = Group.find(params[:id])
+    invitation = Invitation.find(:first, :conditions => ["group_id = ? AND LOWER(email) = ?", @group.id, current_user.email.downcase])
+    if invitation
+      # Bypass the group password protection if the user was invited..
+      current_user.group = @group
+      if current_user.save
+        Invitation.destroy(invitation.id)
+        flash[:notice] = "You have joined group #{@group.name}"
+        redirect_to group_url(@group)
+      else
+        flash[:error] = "Failed to join group #{@group.name}"
+        redirect_to groups_url
+      end
+    end
   end
 
   def add_user
