@@ -45,18 +45,18 @@ http://creativecommons.org/licenses/by-nc/2.5/
         </ul>
       </div>
 
-      <% if flash[:notice] %>
-        <div id="flash_notice">
-          <%= flash[:notice] -%>
-        </div>
-      <% end %>
-      <% if flash[:error] %>
-        <div id="flash_error">
-          <%= flash[:error] -%>
-        </div>
-      <% end %>
       <div id="content_wrapper">
         <div id="left_side">
+          <% if flash[:notice] %>
+            <div id="flash_notice">
+              <div><br /><%= flash[:notice] -%><br /><br /></div>
+            </div>
+          <% end %>
+          <% if flash[:error] %>
+            <div id="flash_error">
+              <div><br /><%= flash[:error] -%><br /></div>
+            </div>
+          <% end %>
           <%= yield %>
         </div>
         <div id="right_side">

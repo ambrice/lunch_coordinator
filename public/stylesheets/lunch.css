@@ -268,18 +268,20 @@ A:hover {
 }
 
 #flash_notice {
-  padding: 1em;
+  padding: 0;
   margin-bottom: 1em;
-  background-color: #99CC33;
-  color: white;
+  border: 1px solid #AAE5A4;
+  color: #FF6600;
+  background-color:#F4FDE5;
   text-align: center;
+  font-family: verdana, arial, sans-serif;
   font-style: bold;
 }
 
 #flash_error {
   background-color: #cf0000;
   color: white;
-  padding: 1em;
+  padding: 0;
   margin-bottom: 1em;
   text-align: center;
   font-style: bold;
