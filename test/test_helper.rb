@@ -35,4 +35,7 @@ class Test::Unit::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def login_as(user)
+    @request.session[:user_id] = user ? users(user).id : nil
+  end
 end

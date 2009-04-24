@@ -47,16 +47,6 @@ http://creativecommons.org/licenses/by-nc/2.5/
 
       <div id="content_wrapper">
         <div id="left_side">
-          <% if flash[:notice] %>
-            <div id="flash_notice">
-              <div><br /><%= flash[:notice] -%><br /><br /></div>
-            </div>
-          <% end %>
-          <% if flash[:error] %>
-            <div id="flash_error">
-              <div><br /><%= flash[:error] -%><br /></div>
-            </div>
-          <% end %>
           <%= yield %>
         </div>
         <div id="right_side">
@@ -73,6 +63,18 @@ http://creativecommons.org/licenses/by-nc/2.5/
       <div id="page_footer">
         <p>&copy; 2009 Aaron Brice; Some elements &copy; Darren Hester DesignsByDarren.com</p>
       </div>
+    </div>
+    <div id="wrapper">
+      <% if flash[:notice] %>
+        <div id="flash_notice">
+          <div><br /><%= flash[:notice] -%><br /><br /></div>
+        </div>
+      <% end %>
+      <% if flash[:error] %>
+        <div id="flash_error">
+          <div><br /><%= flash[:error] -%><br /></div>
+        </div>
+      <% end %>
     </div>
   </body>
 </html>

@@ -1,9 +1,4 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  group_id: 1
-  email: MyString
-
-two:
-  group_id: 1
-  email: MyString
+invitation_one:
+  email: test01@mailinator.com

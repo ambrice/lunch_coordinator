@@ -1,7 +1,17 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+chinobandito:
+  name: Chino Bandito
+  description: Greatest restaurant ever
+  category: chinese mexican
+  group: testgroup
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+redlobster:
+  name: Red Lobster
+  description: Big chain seafood restauarant
+  category: seafood
+  group: testgroup
+
+olivegarden:
+  name: Olive Garden
+  description: Big chain italian restaurant
+  category: italian
+  group: testgroup

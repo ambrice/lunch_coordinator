@@ -37,7 +37,7 @@ test:
   adapter: postgresql
   encoding: unicode
   database: lunchcoordinator_test
-  username: lunchcoordinator
+  username: aaron
   password:
 
 production:

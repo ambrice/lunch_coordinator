@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class RestaurantUserRatingTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  def test_truth
-    assert true
-  end
+  should_belong_to :user
+  should_belong_to :restaurant
 end

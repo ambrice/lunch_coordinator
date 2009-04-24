@@ -6,8 +6,7 @@ class Group < ActiveRecord::Base
   has_many :invitations
   belongs_to :owner, :class_name => 'User'
 
-  validates_presence_of :name, :owner_id, :password, :password_confirmation, :salt, :on => :create
-  validates_presence_of :name, :owner_id, :hashed_password, :salt, :on => :update
+  validates_presence_of :name, :owner_id, :hashed_password, :salt
   validates_uniqueness_of :name
   validates_confirmation_of :password
 

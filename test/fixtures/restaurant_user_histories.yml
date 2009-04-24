@@ -1,7 +1,30 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+aaron_redlobster_history:
+  user: aaron
+  restaurant: redlobster
+  selections_since_picked: 1
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+aaron_chinobandito_history:
+  user: aaron
+  restaurant: chinobandito
+  selections_since_picked: 2
+
+aaron_olivegarden_history:
+  user: aaron
+  restaurant: olivegarden
+  selections_since_picked: 5
+
+quentin_redlobster_history:
+  user: quentin
+  restaurant: redlobster
+  selections_since_picked: 3
+
+quentin_chinobandito_history:
+  user: quentin
+  restaurant: chinobandito
+  selections_since_picked: 8
+
+quentin_olivegarden_history:
+  user: quentin
+  restaurant: olivegarden
+  selections_since_picked: 4
+
