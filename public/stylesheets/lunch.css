@@ -324,7 +324,7 @@ A:hover {
   margin-top:0px;
   margin-bottom:5px;
   font-family: verdana, arial, sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   color: #779E28;
 }
 
@@ -336,6 +336,12 @@ A:hover {
   margin-bottom:5px;
 }
 
+.errorExplanation ul { 
+  margin-left: 10px;
+  padding-left: 0;
+  list-style: none;
+} 
+
 .errorExplanation li { 
   padding-left: 10px;
   background-image: url(/images/arrow.gif);
@@ -344,5 +350,6 @@ A:hover {
   font-family: verdana, arial, sans-serif;
   font-size: 11px;
   line-height:18px;
+  color: #555555;
 }
 
