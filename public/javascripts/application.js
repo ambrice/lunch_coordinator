@@ -17,4 +17,11 @@ function animate_flash() {
     $('flash_notice').slideDown();
     $('flash_notice').slideUp({delay: 3.0, queue: 'end'});
   }
+
+  var e = $A(document.getElementsByTagName('*')).find(function(e) {
+      return (e.tagName.toUpperCase() == 'INPUT' && (e.type == 'text' || e.type == 'password'))
+      || e.tagName.toUpperCase() == 'TEXTAREA' || e.tagName.toUpperCase() == 'SELECT';
+    });
+  if (e) e.focus();
+
 }
