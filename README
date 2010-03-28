@@ -10,6 +10,3 @@ ratings are enhanced by number of selections since that restaurant was
 selected, so that higher rated restaurants came up more often but lower 
 rated restaurants also would be selected eventually.
 
-Originally was a rails 1.0 app, converting it to 2.0 and adding a group 
-resource so that more than one lunch group could use it, work in progress..
-
