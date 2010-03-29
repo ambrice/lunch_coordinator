@@ -1,0 +1,117 @@
+--- !ruby/object:Gem::Specification 
+name: camping
+version: !ruby/object:Gem::Version 
+  version: 1.5.180
+platform: ruby
+authors: 
+- why the lucky stiff
+autorequire: 
+bindir: bin
+cert_chain: 
+date: 2007-01-06 00:00:00 -07:00
+default_executable: camping
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: activesupport
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.3.1
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: markaby
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: "0.5"
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: metaid
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">"
+      - !ruby/object:Gem::Version 
+        version: 0.0.0
+    version: 
+description: minature rails for stay-at-home moms
+email: why@ruby-lang.org
+executables: 
+- camping
+extensions: []
+
+extra_rdoc_files: 
+- README
+- CHANGELOG
+- COPYING
+files: 
+- COPYING
+- README
+- Rakefile
+- bin/camping
+- doc/camping.1.gz
+- test/test_xhtml_trans.rb
+- lib/camping
+- lib/camping.rb
+- lib/camping-unabridged.rb
+- lib/camping/reloader.rb
+- lib/camping/fastcgi.rb
+- lib/camping/session.rb
+- lib/camping/db.rb
+- lib/camping/webrick.rb
+- extras/permalink.gif
+- extras/Camping.gif
+- extras/flipbook_rdoc.rb
+- examples/campsh.rb
+- examples/tepee.rb
+- examples/blog.rb
+- CHANGELOG
+has_rdoc: true
+homepage: http://code.whytheluckystiff.net/camping/
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --quiet
+- --title
+- Camping, the Documentation
+- --opname
+- index.html
+- --line-numbers
+- --main
+- README
+- --inline-source
+- --exclude
+- ^(examples|extras)\/
+- --exclude
+- lib/camping.rb
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: 1.8.2
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.5
+signing_key: 
+specification_version: 1
+summary: minature rails for stay-at-home moms
+test_files: []
+

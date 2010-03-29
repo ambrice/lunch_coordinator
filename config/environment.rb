@@ -28,6 +28,7 @@ Rails::Initializer.run do |config|
   config.gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
   config.gem "rack"
   config.gem "test-spec"
+  config.gem "camping"
 
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
