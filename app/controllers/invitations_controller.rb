@@ -3,7 +3,7 @@ class InvitationsController < ApplicationController
   before_filter :group_required
 
   def index
-    @invitations = Invitation.all
+    @invitations = @group.invitations
   end
 
   def new
