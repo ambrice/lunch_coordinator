@@ -26,7 +26,16 @@ class LunchCoordinatorController < ApplicationController
 
     @users = User.find(params[:going_to_lunch])
 
-    selected_type = params[:selected_restaurant_type]
+    include_tags = Array.new
+    exclude_tags = Array.new
+    params[:restaurant_tags].split(' ').each do |tag|
+      tag.downcase!
+      if tag =~ /^-/
+        exclude_tags << tag[1..-1]
+      else
+        include_tags << tag
+      end
+    end
 
     if @users.empty?
       flash[:error] = "Must select at least one person to go to lunch"
@@ -39,8 +48,12 @@ class LunchCoordinatorController < ApplicationController
     restaurant_exclude_list = Array.new
 
     restaurants.each do |restaurant|
-      if selected_type != "Any" && !restaurant.category.nil? && selected_type != restaurant.category
-        logger.debug "Restaurant #{restaurant.name} does not match requested type #{selected_type}"
+      if include_tags.size > 0 && (include_tags & restaurant.tag_list).size != include_tags.size
+        logger.debug "Restaurant #{restaurant.name} does not include required tags"
+        restaurant_exclude_list << restaurant.name
+        next
+      elsif exclude_tags.size > 0 && (exclude_tags & restaurant.tag_list).size > 0
+        logger.debug "Restaurant #{restaurant.name} includes one or more excluded tags"
         restaurant_exclude_list << restaurant.name
         next
       end

@@ -75,12 +75,6 @@ class GroupsController < ApplicationController
       flash[:error] = "Must add some restaurants first"
       redirect_to new_group_restaurant_url(@group)
     end
-
-    @types = Set.new
-    @types << 'Any'
-    restaurants.each do |r|
-      @types << r.category
-    end
   end
 
 end

@@ -6,12 +6,12 @@
     <%= f.text_field :name -%>
   </p>
   <p>
-    <%= f.label :category, 'Restaurant Type' -%><br/>
-    <%= f.text_field :category -%>
-  </p>
-  <p>
     <%= f.label :description, 'Description' -%><br/>
     <%= f.text_field :description -%>
+  </p>
+  <p>
+    <%= f.label :tags_string, 'Tags' -%><br/>
+    <%= f.text_field :tags_string -%>
   </p>
   <%= f.submit "Update" -%>
 <% end %>

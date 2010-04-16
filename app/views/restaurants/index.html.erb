@@ -3,14 +3,14 @@
   <table>
     <tr>
       <th>Name</th>
-      <th>Type</th>
       <th>Description</th>
+      <th>Tags</th>
     </tr>
     <% for restaurant in @restaurants %>
     <tr class="<%= cycle('even', 'odd') -%>">
       <td><%=h restaurant.name -%></td>
-      <td><%=h restaurant.category -%></td>
       <td><%=h restaurant.description -%></td>
+      <td><%=h restaurant.tags_string -%></td>
       <td><%= link_to 'Edit', edit_group_restaurant_path(@group, restaurant) %></td>
       <td><%= link_to 'Delete', group_restaurant_path(@group, restaurant),
               :method => :delete,

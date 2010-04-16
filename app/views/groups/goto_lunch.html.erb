@@ -1,8 +1,8 @@
 <h3>Who is going to lunch today?</h3>
 <% form_remote_tag :url => calculate_restaurant_path, :method => :put, :html => { :method => :put } do -%>
   <p>
-    <%= label_tag 'selected_restaurant_type', 'Restaurant Type'-%>
-    <%= select_tag 'selected_restaurant_type', options_for_select(@types, 'Any') -%>
+    <%= label_tag 'restaurant_tags', 'Restaurant Tags'-%>
+    <%= text_field_tag 'restaurant_tags' -%>
   </p>
   <p>
     <% for user in @users %>
